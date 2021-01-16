@@ -345,3 +345,22 @@ You can learn more about the ways lingui and its React helpers at [this link](ht
 1) Issues marked with `component:I10n` should not be closed after the issue was fixed.
 2) Remove the label `state:needs_devel`.
 3) Add the label `state:pending_translations`. At this point, the translations will be batch translated by a maintainer, creating relevant entries in the PO files. Then after those translations have been merged, the issue can be closed.
+
+
+### Work on UI Devel
+
+```
+The Docker-based development environment actually has tooling to run a webpack dev server that notices frontend file changes and auto-reloads.  Additional, it proxies non-static requests through the underlying python-based API.  Assuming you have the 6.x LTS version of Node and NPM, you can run make ui-docker
+
+~ make ui-docker
+...
+> webpack-dev-server --config build/webpack.watch.js --progress --https
+
+[HPM] Proxy created: (pathname, req) => !(pathname === '/api/login/' && req.method === 'POST')  ->  https://localhost:8043
+[HPM] Proxy created: /api/login/  ->  https://localhost:8043
+[HPM] Proxy created: /websocket  ->  https://localhost:8043
+[HPM] Proxy created: /network_ui  ->  https://localhost:8043
+
+Project is running at https://127.0.0.1:3000/
+
+``
